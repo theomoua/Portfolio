@@ -25,12 +25,12 @@ const posterCards=[
  {image:"WENBANYAMA_POSTER.webp",alt:"Affiche de Victor Wembanyama"}
 ];
 const certificationFiles={
- analytics:"certifications/theo-moua_GOOGLE_ANALYTICS_CERTIFICATION.pdf",
+ analytics:"/theo-moua_GOOGLE_ANALYTICS_CERTIFICATION.pdf",
  semrush:[
-  "certifications/theo-moua_SEMRUSH_CERTIFICATION_1.pdf",
-  "certifications/theo-moua_SEMRUSH_CERTIFICATION_2.pdf",
-  "certifications/theo-moua_SEMRUSH_CERTIFICATION_3.pdf",
-  "certifications/theo-moua_SEMRUSH_CERTIFICATION_On-page_SEO.pdf"
+  "/theo-moua_SEMRUSH_CERTIFICATION_1.pdf",
+  "/theo-moua_SEMRUSH_CERTIFICATION_2.pdf",
+  "/theo-moua_SEMRUSH_CERTIFICATION_3.pdf",
+  "/theo-moua_SEMRUSH_CERTIFICATION_On-page_SEO.pdf"
  ]
 };
 const description="Étudiant en 3e année de BUT Techniques de commercialisation, je me suis spécialisé en marketing digital. Je recherche un stage en marketing digital ou en communication digitale dès février 2027. Vous découvrirez dans ce portfolio de nombreux projets personnels et universitaires que j’ai réalisés.";

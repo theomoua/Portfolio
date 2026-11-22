@@ -1,7 +1,7 @@
 :root{--bg:#fffaf5;--ink:#17183f;--blue-deep:#1114a8;--blue-strong:#294fdd;--blue:#607df2;--blue-light:#91baf8;--blue-pale:#b9d5f8;--yellow-deep:#efb400;--yellow:#f1ce00;--yellow-soft:#fff080;--yellow-pale:#fff3b3;--paper:#fff;--soft:#f1f1ed;--soft-blue:#e9efff;--muted:#686b82;--accent:var(--yellow);--accent-soft:var(--yellow-soft);--footer-bg:#1114a8;--footer-muted:#c7c9dc;--header-height:90px;--section-gap:clamp(16px,4vw,56px);box-sizing:border-box;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11143b;--ink:#fffaf5;--blue-deep:#1114a8;--blue-strong:#91baf8;--blue:#91baf8;--blue-light:#b9d5f8;--blue-pale:#d7e7ff;--soft:#202754;--soft-blue:#202b60;--muted:#c2c7dc;--accent:#f6e255;--accent-soft:#514b1c;--footer-bg:#0b0f31;--footer-muted:#aeb8d7;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#11143b;--ink:#fffaf5;--blue-deep:#1114a8;--blue-strong:#91baf8;--blue:#91baf8;--blue-light:#b9d5f8;--blue-pale:#d7e7ff;--soft:#202754;--soft-blue:#202b60;--muted:#c2c7dc;--accent:#f6e255;--accent-soft:#514b1c;--footer-bg:#0b0f31;--footer-muted:#aeb8d7;color-scheme:dark}
-@font-face{font-family:Arsenica;src:url("Police%20d'%C3%A9criture/ArsenicaTrial-Bold.ttf") format("truetype");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:Arsenica;src:url("ArsenicaTrial-Bold.ttf") format("truetype");font-style:normal;font-weight:700;font-display:swap}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5}

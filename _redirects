@@ -1,3 +1,14 @@
+/contenu-visuel /index.html 200
+/contenu-visuel/ /index.html 200
+/sites-web /index.html 200
+/communication /index.html 200
+/entrepreneuriat /index.html 200
+/projets /index.html 200
+/contact /index.html 200
+/competences /index.html 200
+/logiciels /index.html 200
+/parcours /index.html 200
+/affiches /contenu-visuel 301
 /mentions-legales /mentions-legales.html 200
 /a-propos /a-propos.html 200
 /* /404.html 404

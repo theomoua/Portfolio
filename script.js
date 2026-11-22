@@ -1,47 +1,147 @@
 const P={
- affiches:{t:"Affiches",d:"Des affiches graphiques sur le sport, pensées et réalisées sur Photoshop."},
+ "contenu-visuel":{t:"Contenu visuel",d:"Des affiches graphiques sur le sport, pensées et réalisées sur Photoshop."},
  "sites-web":{t:"Sites web",d:"Les sites que j’ai conçus et réalisés, de la maquette à la mise en ligne."},
  communication:{t:"Communication",d:"Réseaux sociaux, supports imprimés et identités : mes projets de communication."},
  entrepreneuriat:{t:"Entrepreneuriat",d:"Les projets que j’ai lancés et les aventures entrepreneuriales auxquelles j’ai participé."}
 };
 const photos={
- hero:"Photo%20portfolio%20hero.jpeg",
- affiches:"Affiches%20photo.jpg",
+ hero:"Photo_portfolio_hero.webp",
+ "contenu-visuel":"Affiches%20photo.webp",
  "sites-web":"Site%20web%20photo.png",
  communication:"Communication%20photo.png"
 };
 const posterCards=[
- {image:"JUDE_BELLINGHAM_POSTER.jpg",alt:"Affiche de Jude Bellingham"},
- {image:"Raphina_POSTER.jpg",alt:"Affiche de Raphinha"},
- {image:"VINICIUS_POSTER.jpg",alt:"Affiche de Vinícius Júnior"},
- {image:"PALMER_POSTER.jpg",alt:"Affiche de Cole Palmer"},
- {image:"Griezmann_retreat_POSTER.jpg",alt:"Affiche d’Antoine Griezmann"},
- {image:"JOAO_NEVES_POSTER.jpg",alt:"Affiche de João Neves"},
- {image:"Ibrahimovic_POSTER.jpg",alt:"Affiche de Zlatan Ibrahimović"},
- {image:"MADUEKE_POSTER.jpg",alt:"Affiche de Noni Madueke"},
- {image:"MARCUS_THURAM_POSTER.jpg",alt:"Affiche de Marcus Thuram"},
- {image:"BUSQUET_POSTER.jpg",alt:"Affiche de Sergio Busquets"},
- {image:"CURRY_POSTER.jpg",alt:"Affiche de Stephen Curry"},
- {image:"WENBANYAMA_POSTER.jpg",alt:"Affiche de Victor Wembanyama"}
+ {image:"JUDE_BELLINGHAM_POSTER.webp",alt:"Affiche de Jude Bellingham"},
+ {image:"Raphina_POSTER.webp",alt:"Affiche de Raphinha"},
+ {image:"VINICIUS_POSTER.webp",alt:"Affiche de Vinícius Júnior"},
+ {image:"PALMER_POSTER.webp",alt:"Affiche de Cole Palmer"},
+ {image:"Griezmann_retreat_POSTER.webp",alt:"Affiche de griezmann retraite atlético madrid"},
+ {image:"JOAO_NEVES_POSTER.webp",alt:"Affiche de João Neves"},
+ {image:"Ibrahimovic_POSTER.webp",alt:"Affiche de Zlatan Ibrahimović"},
+ {image:"MADUEKE_POSTER.webp",alt:"Affiche de Noni Madueke"},
+ {image:"MARCUS_THURAM_POSTER.webp",alt:"Affiche de Marcus Thuram"},
+ {image:"BUSQUET_POSTER.webp",alt:"Affiche de Sergio Busquets"},
+ {image:"CURRY_POSTER.webp",alt:"Affiche de Stephen Curry"},
+ {image:"WENBANYAMA_POSTER.webp",alt:"Affiche de Victor Wembanyama"}
 ];
-const description="Étudiant en 3e année de BUT Techniques de commercialisation, je me suis spécialisé en marketing digital. Je recherche un stage en marketing digital ou en communication digitale dès janvier 2027. Vous découvrirez dans ce portfolio de nombreux projets personnels et universitaires que j’ai réalisés.";
+const certificationFiles={
+ analytics:"certifications/theo-moua_GOOGLE_ANALYTICS_CERTIFICATION.pdf",
+ semrush:[
+  "certifications/theo-moua_SEMRUSH_CERTIFICATION_1.pdf",
+  "certifications/theo-moua_SEMRUSH_CERTIFICATION_2.pdf",
+  "certifications/theo-moua_SEMRUSH_CERTIFICATION_3.pdf",
+  "certifications/theo-moua_SEMRUSH_CERTIFICATION_On-page_SEO.pdf"
+ ]
+};
+const description="Étudiant en 3e année de BUT Techniques de commercialisation, je me suis spécialisé en marketing digital. Je recherche un stage en marketing digital ou en communication digitale dès février 2027. Vous découvrirez dans ce portfolio de nombreux projets personnels et universitaires que j’ai réalisés.";
 const app=document.getElementById('app');
+let posterCarouselResizeHandler=null;
+let posterCarouselAnimationFrame=null;
 const img=(src,alt="")=>`<img src="${src}" alt="${alt}" loading="lazy">`;
+const certificationLinks=()=>`<a class="cert-button" href="${certificationFiles.analytics}" target="_blank" rel="noopener noreferrer">Google Analytics 4 · Voir le PDF</a>
+    ${certificationFiles.semrush.map((file,index)=>`<a class="cert-button" href="${file}" target="_blank" rel="noopener noreferrer">Semrush · Certification ${index+1}</a>`).join('')}`;
 function home(){
  return `<section class="hero" id="top">
-  <div class="hero-visual"><div class="photo">${img(photos.hero,"Photo de Théo")}</div><p class="hero-caption">Participation à la journée porte ouverte de l'IUT de Sceaux de l'Université Paris-Saclay, 2026.</p></div>
-  <div class="hero-copy"><h1>Théo MOUA, étudiant en <span class="h1-highlight">marketing digital</span></h1><p class="tag">${description}</p><p class="availability"><span class="availability-dot" aria-hidden="true"></span>Disponible – stage dès janvier 2027</p></div>
+  <div class="hero-visual"><div class="photo">${img(photos.hero,"Théo MOUA pendant les JPRO à Sceaux 2026")}</div><p class="hero-caption">Participation à la journée porte ouverte de l'IUT de Sceaux de l'Université Paris-Saclay, 2026.</p></div>
+  <div class="hero-copy"><h1>Théo MOUA, étudiant en <span class="h1-highlight">marketing digital</span></h1><p class="tag">${description}</p><p class="availability"><span class="availability-dot" aria-hidden="true"></span>Disponible – stage dès février 2027</p></div>
  </section>
  <section class="work home-projects anchor-section" id="projets"><h2>Projets</h2><div class="grid">
- ${Object.entries(P).map(([k,v])=>`<a class="card" href="#${k}">${photos[k]?img(photos[k],`Photo pour ${v.t}`):`<div class="ph">Photo ${v.t}</div>`}<div class="lbl"><h3>${v.t}</h3></div></a>`).join('')}
+ ${Object.entries(P).map(([k,v])=>`<a class="card" href="/index.html?page=${k}">${photos[k]?img(photos[k],`Photo pour ${v.t}`):`<div class="ph">Photo ${v.t}</div>`}<div class="lbl"><h3>${v.t}</h3></div></a>`).join('')}
  </div></section>
  <section class="home-about anchor-section" id="a-propos" aria-labelledby="home-about-title">
-  <div class="home-section-content">
-   <h2 id="home-about-title">À propos de moi</h2>
-   <p class="about-copy">Je m’appelle Théo MOUA et j’étudie le marketing digital. J’aime donner forme à une idée et la transformer en contenu clair, utile et adapté à son public.</p>
-   <h3>Ce que je recherche</h3>
-   <p class="about-copy">Je cherche un stage de 3 à 6 mois en marketing digital à partir de janvier 2027. Je souhaite participer à des missions concrètes, contribuer à une équipe et continuer à progresser au contact du terrain.</p>
-   <p class="about-copy">En dehors de mes projets, j’aime le sport et les affiches qui racontent une histoire en quelques secondes.</p>
+  <div class="home-section-content home-about-layout">
+   <div class="home-about-portrait">
+    <svg class="home-about-frame" viewBox="0 0 612 408" width="612" height="408" aria-hidden="true">
+     <defs>
+      <filter id="home-about-outline" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+       <feComponentTransfer in="SourceAlpha" result="solid-silhouette"><feFuncA type="linear" slope="2" intercept="-1"/></feComponentTransfer>
+       <feMorphology in="solid-silhouette" operator="dilate" radius="9" result="expanded"/>
+       <feGaussianBlur in="expanded" stdDeviation="0.7" result="soft-expanded"/>
+       <feFlood flood-color="var(--blue-strong)" result="outline-color"/>
+       <feComposite in="outline-color" in2="soft-expanded" operator="in"/>
+      </filter>
+     </defs>
+     <image href="A%20propos%20de%20moi%20photo.png" width="612" height="408" filter="url(#home-about-outline)"/>
+    </svg>
+    ${img("A%20propos%20de%20moi%20photo.png","Portrait détouré de Théo MOUA")}
+   </div>
+   <div class="home-about-text">
+    <h2 id="home-about-title">À propos de moi</h2>
+    <p class="about-copy">Étudiant en 3e année de BUT Techniques de commercialisation, spécialisé en marketing digital, j’aime imaginer, créer et donner vie à de nouvelles idées. Ce qui me plaît particulièrement ? Mélanger créativité et stratégie pour créer des contenus qui ont du sens et qui parlent aux bonnes personnes. Toujours curieux de découvrir de nouveaux outils et d’apprendre de nouvelles choses, j’aime expérimenter, tester et surtout voir mes idées prendre forme.</p>
+    <div class="home-about-details">
+     <article class="home-about-detail"><h3>Ce que je recherche</h3><p>Un stage de 3 à 6 mois en marketing digital à partir de février 2027, pour contribuer à des missions concrètes et progresser sur le terrain.</p></article>
+     <article class="home-about-detail"><h3>Mes projets</h3><p>Affiches, sites web et contenus pour différents formats. En dehors de mes projets, j’aime le sport et les affiches qui racontent une histoire.</p></article>
+    </div>
+   </div>
+   <div class="home-about-photos" aria-label="Emplacements pour ajouter des photos">
+    <div class="home-about-photo-placeholder" role="img" aria-label="Emplacement pour une photo à ajouter">Photo à ajouter</div>
+    <div class="home-about-photo-placeholder" role="img" aria-label="Emplacement pour une photo à ajouter">Photo à ajouter</div>
+    <div class="home-about-photo-placeholder" role="img" aria-label="Emplacement pour une photo à ajouter">Photo à ajouter</div>
+   </div>
+  </div>
+ </section>
+ <section class="career-timeline anchor-section" id="parcours" aria-labelledby="career-title">
+  <div class="home-section-content career-content">
+   <p class="career-kicker">Expériences professionnelles</p>
+   <h2 id="career-title">Du terrain à la communication digitale</h2>
+   <p class="career-intro">Quelques étapes qui m’ont permis de découvrir la vente, l’engagement associatif et la communication.</p>
+   <div class="career-timeline-scroll">
+    <div class="career-timeline-stage">
+     <div class="career-timeline-frame" role="region" aria-label="Frise chronologique des expériences professionnelles" tabindex="0">
+      <ol class="career-timeline-track">
+       <li class="career-timeline-item">
+        <article class="career-card">
+         <div class="career-date"><time datetime="2025-02">Février 2025</time><span>Vente</span></div>
+         <h3>Stage de vente</h3>
+         <p class="career-organization">Foot Locker · 2 semaines</p>
+         <ul>
+          <li>Conseil et accompagnement des clients</li>
+          <li>Développement des ventes additionnelles</li>
+          <li>Réassort, merchandising et identification des besoins</li>
+         </ul>
+        </article>
+       </li>
+       <li class="career-timeline-item">
+        <article class="career-card">
+         <div class="career-date"><time datetime="2025-05">Mai 2025</time><span>Engagement</span></div>
+         <h3>Collecte de jouets</h3>
+         <p class="career-organization">Association Rêves</p>
+         <ul>
+          <li>Organisation et réalisation d’une collecte solidaire</li>
+          <li>Planification des étapes et tri des dons</li>
+          <li>Communication locale et sensibilisation du public</li>
+         </ul>
+        </article>
+       </li>
+       <li class="career-timeline-item">
+        <article class="career-card">
+         <div class="career-date"><time datetime="2026-04">Avril 2026</time><span>Engagement</span></div>
+         <h3>Organisation d’une tombola</h3>
+         <img class="career-card-image" src="Reves_Tombola.webp" alt="Tombola solidaire organisée pour l’Association Rêves" loading="lazy">
+         <p class="career-organization">Association Rêves</p>
+         <ul>
+          <li>Organisation d’une tombola solidaire</li>
+         </ul>
+        </article>
+       </li>
+       <li class="career-timeline-item">
+        <article class="career-card">
+         <div class="career-date"><time datetime="2026-04">Avril – mai 2026</time><span>Communication</span></div>
+         <h3>Stage en communication</h3>
+         <img class="career-card-image" src="era-team-communication.png" alt="Équipe communication d’ERA Immobilier avec l’inscription Team Communication" loading="lazy">
+         <p class="career-organization">Projet Immo · ERA Immobilier · 8 semaines</p>
+         <ul>
+          <li>Réalisation de vidéos</li>
+          <li>Gestion des réseaux sociaux</li>
+          <li>Veille concurrentielle</li>
+         </ul>
+        </article>
+       </li>
+      </ol>
+     </div>
+    </div>
+   </div>
+   <p class="career-scroll-hint" aria-hidden="true">Faites défiler la page pour découvrir la suite <span>↓</span></p>
   </div>
  </section>
  <section class="home-skills anchor-section" id="competences" aria-labelledby="skills-title">
@@ -55,8 +155,7 @@ function home(){
     <article class="skill-card"><h3>Intelligence artificielle</h3><p>Exploration d’idées et accélération de certaines étapes, avec vérification et retravail de chaque production.</p></article>
    </div>
    <div class="certifications" aria-label="Certifications">
-    <span class="cert-badge">Google Analytics 4</span>
-    <span class="cert-badge">Semrush Academy</span>
+    ${certificationLinks()}
    </div>
   </div>
  </section>
@@ -109,13 +208,13 @@ function posterArtwork(card){
 }
 function affichesPage(){
  return `<section class="page poster-page">
-  <a class="btn pill back" href="#">Retour</a>
+  <a class="btn pill back" href="/index.html">Retour</a>
   <div class="poster-intro">
    <div class="poster-deck" tabindex="0" role="group" aria-label="Trois affiches disposées comme des cartes à jouer">
     ${posterCards.slice(0,3).map((card,index)=>`<figure class="poster-deck-card poster-artwork-card poster-artwork-card-${index+1}" aria-label="${card.alt}">${posterArtwork(card)}</figure>`).join('')}
    </div>
    <div class="poster-heading">
-    <h2>Des affiches graphiques sur le sport</h2>
+    <h2>Du contenu visuel autour du sport</h2>
     <p class="poster-software"><svg viewBox="0 0 48 48" role="img" aria-label="Logo Photoshop"><rect x="2" y="2" width="44" height="44" rx="8" fill="#001e36"/><path d="M2 14V10a8 8 0 0 1 8-8h28a8 8 0 0 1 8 8v4" fill="#31a8ff"/><text x="8" y="33" fill="#31a8ff" font-family="Arial,sans-serif" font-size="18" font-weight="700">Ps</text></svg><span>Photoshop</span></p>
     <div class="poster-description">
      <p>Passionné par le graphisme et l’univers du sport, j’ai développé un projet personnel de création d’affiches, principalement autour du football. ⚽</p>
@@ -127,28 +226,111 @@ function affichesPage(){
    </div>
   </div>
   <section class="poster-gallery" aria-labelledby="poster-gallery-title">
-   <div class="poster-gallery-heading"><h3 id="poster-gallery-title">Les affiches</h3><p>Survolez ou sélectionnez une carte pour découvrir son visuel.</p></div>
-   <div class="poster-card-grid">
-    ${posterCards.map((card,index)=>`<button class="poster-flip-card" type="button" aria-label="Révéler ${card.alt.toLowerCase()}" aria-pressed="false">
-     <span class="poster-flip-inner">
-      <span class="poster-card-back" aria-hidden="true"><span class="poster-monogram">T<span>M</span></span></span>
-      <span class="poster-card-front" aria-hidden="true">${posterArtwork(card)}</span>
-     </span>
-    </button>`).join('')}
+   <div class="poster-gallery-heading">
+    <div><h3 id="poster-gallery-title">Contenu visuel</h3><p>Une sélection d’affiches, présentées en boucle.</p></div>
+   </div>
+   <div class="poster-carousel" role="region" tabindex="0" aria-label="Carrousel des affiches. Appuyez sur Espace ou maintenez le clic pour arrêter le défilement." aria-roledescription="carrousel" aria-keyshortcuts="Space">
+    <div class="poster-carousel-track">
+     ${posterCards.map(card=>`<figure class="poster-carousel-item">
+      <div class="poster-carousel-artwork">${posterArtwork(card)}</div>
+      <figcaption>${card.alt}</figcaption>
+     </figure>`).join('')}
+    </div>
    </div>
   </section>
  </section>`;
 }
+function initPosterCarousel(){
+ const carousel=app.querySelector('.poster-carousel');
+ if(!carousel)return;
+ const track=carousel.querySelector('.poster-carousel-track');
+ const slides=Array.from(track.children);
+ const originalCount=slides.length;
+ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const cloneCount=Math.min(5,originalCount);
+ slides.slice(0,cloneCount).forEach(slide=>{
+  const clone=slide.cloneNode(true);
+  clone.setAttribute('aria-hidden','true');
+  track.append(clone);
+ });
+ let loopWidth=track.children[originalCount].getBoundingClientRect().left-track.children[0].getBoundingClientRect().left;
+ let offset=0;
+ let previousTime=null;
+ let pointerHeld=false;
+ let keyboardPaused=false;
+ const setPosition=()=>{track.style.transform=`translate3d(${offset}px,0,0)`};
+ const updatePlayback=()=>{
+  const paused=pointerHeld||keyboardPaused||reducedMotion;
+  carousel.classList.toggle('is-held',paused);
+  if(paused&&posterCarouselAnimationFrame!==null){
+   cancelAnimationFrame(posterCarouselAnimationFrame);
+   posterCarouselAnimationFrame=null;
+   previousTime=null;
+  }else if(!paused&&posterCarouselAnimationFrame===null){
+   previousTime=null;
+   posterCarouselAnimationFrame=requestAnimationFrame(animate);
+  }
+ };
+ const animate=time=>{
+  if(previousTime===null)previousTime=time;
+  const elapsed=Math.min(time-previousTime,50);
+  previousTime=time;
+  if(!document.hidden){
+   offset-=36*elapsed/1000;
+   if(offset<=-loopWidth)offset+=loopWidth;
+   setPosition();
+  }
+  posterCarouselAnimationFrame=requestAnimationFrame(animate);
+ };
+ const pointerDown=event=>{
+  if(!event.isPrimary)return;
+  pointerHeld=true;
+  updatePlayback();
+  carousel.setPointerCapture(event.pointerId);
+ };
+ const pointerUp=event=>{
+  pointerHeld=false;
+  updatePlayback();
+  if(carousel.hasPointerCapture(event.pointerId))carousel.releasePointerCapture(event.pointerId);
+ };
+ carousel.addEventListener('pointerdown',pointerDown);
+ carousel.addEventListener('pointerup',pointerUp);
+ carousel.addEventListener('pointercancel',pointerUp);
+ carousel.addEventListener('lostpointercapture',pointerUp);
+ carousel.addEventListener('keydown',event=>{
+  if(event.code==='Space'){
+   event.preventDefault();
+   keyboardPaused=!keyboardPaused;
+   updatePlayback();
+  }
+ });
+ posterCarouselResizeHandler=()=>{
+  const progress=-offset/loopWidth;
+  loopWidth=track.children[originalCount].getBoundingClientRect().left-track.children[0].getBoundingClientRect().left;
+  offset=-loopWidth*progress;
+  setPosition();
+ };
+ window.addEventListener('resize',posterCarouselResizeHandler);
+ track.querySelectorAll('img').forEach(image=>image.setAttribute('draggable','false'));
+ setPosition();
+ updatePlayback();
+}
 const webPalette=[
- {group:"Principale",name:"Bleu profond",hex:"#1114A8",rgb:"17, 20, 168"},
- {group:"Principale",name:"Bleu",hex:"#294FDD",rgb:"41, 79, 221"},
- {group:"Principale",name:"Bleu clair",hex:"#607DF2",rgb:"96, 125, 242"},
- {group:"Secondaire",name:"Jaune profond",hex:"#EFB400",rgb:"239, 180, 0"},
- {group:"Secondaire",name:"Jaune",hex:"#F1CE00",rgb:"241, 206, 0"},
- {group:"Secondaire",name:"Jaune clair",hex:"#FFF080",rgb:"255, 240, 128"},
- {group:"Neutre",name:"Gris doux",hex:"#F1F1ED",rgb:"241, 241, 237"},
- {group:"Neutre",name:"Blanc chaud",hex:"#FFFAF5",rgb:"255, 250, 245"},
- {group:"Neutre",name:"Blanc",hex:"#FFFFFF",rgb:"255, 255, 255"}
+ {group:"Violet",name:"Violet -2",hex:"#211B2D",rgb:"33, 27, 45"},
+ {group:"Violet",name:"Violet -1",hex:"#482E80",rgb:"72, 46, 128"},
+ {group:"Violet",name:"Violet 0",hex:"#6941E8",rgb:"105, 65, 232"},
+ {group:"Violet",name:"Violet +1",hex:"#9384E7",rgb:"147, 132, 231"},
+ {group:"Violet",name:"Violet +2",hex:"#D7C5FF",rgb:"215, 197, 255"},
+ {group:"Blanc",name:"Blanc -2",hex:"#CBCBCB",rgb:"203, 203, 203"},
+ {group:"Blanc",name:"Blanc -1",hex:"#ECECEC",rgb:"236, 236, 236"},
+ {group:"Blanc",name:"Blanc 0",hex:"#F6F6F2",rgb:"246, 246, 242"},
+ {group:"Blanc",name:"Blanc +1",hex:"#FFFBF6",rgb:"255, 251, 246"},
+ {group:"Blanc",name:"Blanc +2",hex:"#FFFDFB",rgb:"255, 253, 251"},
+ {group:"Rose",name:"Rose -2",hex:"#9C1299",rgb:"156, 18, 153"},
+ {group:"Rose",name:"Rose -1",hex:"#DC0DD9",rgb:"220, 13, 217"},
+ {group:"Rose",name:"Rose 0",hex:"#FF44FC",rgb:"255, 68, 252"},
+ {group:"Rose",name:"Rose +1",hex:"#FF93FD",rgb:"255, 147, 253"},
+ {group:"Rose",name:"Rose +2",hex:"#FFD0FB",rgb:"255, 208, 251"}
 ];
 function webVideoPlaceholder(title){
  return `<div class="web-video-frame" role="img" aria-label="Aperçu du projet ${title}. Vidéo au format paysage 1920 par 1080 à intégrer.">
@@ -159,7 +341,7 @@ function webVideoPlaceholder(title){
 }
 function sitesWebPage(){
  return `<section class="page web-project-page">
-  <a class="btn pill back" href="#">Retour</a>
+  <a class="btn pill back" href="/index.html">Retour</a>
   <section class="web-case-hero" aria-labelledby="caseflow-title">
    ${webVideoPlaceholder("CaseFlow")}
    <div class="web-project-copy">
@@ -173,11 +355,11 @@ function sitesWebPage(){
     <div class="web-design-heading">
      <p class="web-project-kicker">Identité visuelle</p>
      <h2 id="caseflow-design-title">Couleurs &amp; typographies</h2>
-     <p>Une palette structurée autour de bleus principaux, de jaunes secondaires et de tons neutres.</p>
+     <p>La palette CaseFlow associe des nuances de violet, de rose et de blanc.</p>
     </div>
     <div class="web-identity-grid">
      <div class="web-palette" aria-label="Palette de couleurs">
-      ${["Principale","Secondaire","Neutre"].map(group=>`<div class="web-palette-row" aria-label="${group}">
+      ${["Violet","Blanc","Rose"].map(group=>`<div class="web-palette-row" aria-label="${group}">
        ${webPalette.filter(color=>color.group===group).map(color=>`<div class="web-swatch" style="--swatch-color:${color.hex}" aria-label="${color.name}, RVB ${color.rgb}, ${color.hex}">
         <span class="web-swatch-name">${color.name}</span><span class="web-swatch-rgb">RVB ${color.rgb}</span>
        </div>`).join('')}
@@ -209,33 +391,47 @@ function sitesWebPage(){
 }
 function page(k){
  const v=P[k];
- return `<section class="page"><a class="btn pill back" href="#">Retour</a><h2>${v.t}</h2><p class="lead">${v.d}</p>
+ return `<section class="page"><a class="btn pill back" href="/index.html">Retour</a><h2>${v.t}</h2><p class="lead">${v.d}</p>
  <div class="project-grid">${[1,2,3,4,5,6].map(n=>`<article class="project"><div class="project-photo" role="img" aria-label="Photo du projet ${n} à ajouter">Photo du projet ${n} à ajouter</div><div class="project-description"><h3>Projet ${n}</h3><p><span>Phrase 1 à compléter.</span><span>Phrase 2 à compléter.</span><span>Phrase 3 à compléter.</span><span>Phrase 4 à compléter.</span><span>Phrase 5 à compléter.</span></p></div></article>`).join('')}</div></section>`;
 }
+const routeSections={top:'top',projets:'projets','a-propos':'a-propos',contact:'contact',competences:'competences',logiciels:'logiciels',parcours:'parcours'};
+function currentRoute(){
+ const params=new URLSearchParams(location.search);
+ const page=params.get('page');
+ const section=params.get('section');
+ if(page)return page;
+ if(section)return section;
+ const legacyHash=decodeURIComponent(location.hash.slice(1));
+ if(legacyHash){
+  const route=legacyHash==='affiches'?'contenu-visuel':legacyHash;
+  const isPage=route==='contenu-visuel'||Boolean(P[route]);
+  const type=isPage?'page':'section';
+  history.replaceState(null,'',`/index.html?${type}=${encodeURIComponent(route)}`);
+  return route;
+ }
+ const path=decodeURIComponent(location.pathname).replace(/\/+$/,'');
+ return path===''||path==='/index.html'?'':path.slice(1);
+}
 function render(){
- const k=decodeURIComponent(location.hash.slice(1));
- const detail=k==='affiches'||Boolean(P[k]);
- app.innerHTML=k==='affiches'?affichesPage():k==='sites-web'?sitesWebPage():P[k]?page(k):home();
+ if(posterCarouselAnimationFrame!==null)cancelAnimationFrame(posterCarouselAnimationFrame);
+ posterCarouselAnimationFrame=null;
+ if(posterCarouselResizeHandler)window.removeEventListener('resize',posterCarouselResizeHandler);
+ posterCarouselResizeHandler=null;
+ const k=currentRoute();
+ const detail=k==='contenu-visuel'||Boolean(P[k]);
+ app.innerHTML=k==='contenu-visuel'?affichesPage():k==='sites-web'?sitesWebPage():P[k]?page(k):home();
  app.querySelectorAll('img').forEach(i=>i.addEventListener('error',()=>i.remove()));
- app.querySelectorAll('.poster-flip-card').forEach((card,index)=>{
-  const reveal=()=>{
-   card.classList.add('is-revealed');
-   card.setAttribute('aria-pressed','true');
-   card.setAttribute('aria-label',`Affiche ${index+1} révélée`);
-  };
-  card.addEventListener('pointerenter',reveal,{once:true});
-  card.addEventListener('focus',reveal,{once:true});
- });
+ initPosterCarousel();
  if(detail)window.scrollTo(0,0);
- document.title=detail?(P[k]?.t||'Affiches')+' | Théo MOUA – Portfolio':'Théo MOUA | Marketing digital & SEO – Portfolio';
+ document.title=detail?(P[k]?.t||'Contenu visuel')+' | Théo MOUA – Portfolio':'Théo MOUA | Marketing digital & SEO – Portfolio';
  const year=document.getElementById('current-year');
  if(year)year.textContent=new Date().getFullYear();
  observeSections();
- if(!detail&&['top','projets','a-propos','competences','logiciels','contact'].includes(k)){
+ if(!detail&&routeSections[k]){
   requestAnimationFrame(()=>document.getElementById(k)?.scrollIntoView());
  }
 }
-addEventListener('hashchange',render);
+addEventListener('popstate',render);
 let sectionObserver;
 function observeSections(){
  sectionObserver?.disconnect();
@@ -257,9 +453,9 @@ document.querySelectorAll('[data-section]').forEach(a=>a.addEventListener('click
  e.preventDefault();
  const section=a.dataset.section;
  if(!section)return;
- const currentHash=decodeURIComponent(location.hash.slice(1));
- const wasDetail=Boolean(P[currentHash])||currentHash==='affiches';
- history.pushState(null,'',`#${section}`);
+ const current=currentRoute();
+ const wasDetail=Boolean(P[current])||current==='contenu-visuel';
+ history.pushState(null,'',`/index.html?section=${encodeURIComponent(section)}`);
  if(wasDetail)render();
  document.getElementById(section)?.scrollIntoView();
 }));

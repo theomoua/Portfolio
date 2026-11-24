@@ -5,10 +5,10 @@ const P={
  entrepreneuriat:{t:"Entrepreneuriat",d:"Les projets que j’ai lancés et les aventures entrepreneuriales auxquelles j’ai participé."}
 };
 const photos={
- hero:"Photo_portfolio_hero.webp",
- "contenu-visuel":"Affiches%20photo.webp",
- "sites-web":"Site%20web%20photo.png",
- communication:"Communication%20photo.png"
+ hero:"Photo_portfolio_hero.optimized.webp",
+ "contenu-visuel":"Affiches%20photo.optimized.webp",
+ "sites-web":"Site%20web%20photo.webp",
+ communication:"Communication%20photo.webp"
 };
 const posterCards=[
  {image:"JUDE_BELLINGHAM_POSTER.webp",alt:"Affiche de Jude Bellingham"},
@@ -38,11 +38,11 @@ const app=document.getElementById('app');
 let posterCarouselResizeHandler=null;
 let posterCarouselAnimationFrame=null;
 const img=(src,alt="")=>`<img src="${src}" alt="${alt}" loading="lazy">`;
-const certificationLinks=()=>`<a class="cert-button" href="${certificationFiles.analytics}" target="_blank" rel="noopener noreferrer">Google Analytics 4 · Voir le PDF</a>
+const certificationLinks=()=>`<a class="cert-button" href="${certificationFiles.analytics}" target="_blank" rel="noopener noreferrer">Google Analytics 4</a>
     ${certificationFiles.semrush.map((file,index)=>`<a class="cert-button" href="${file}" target="_blank" rel="noopener noreferrer">Semrush · Certification ${index+1}</a>`).join('')}`;
 function home(){
  return `<section class="hero" id="top">
-  <div class="hero-visual"><div class="photo">${img(photos.hero,"Théo MOUA pendant les JPRO à Sceaux 2026")}</div><p class="hero-caption">Participation à la journée porte ouverte de l'IUT de Sceaux de l'Université Paris-Saclay, 2026.</p></div>
+  <div class="hero-visual"><div class="photo"><img src="${photos.hero}" alt="Théo MOUA pendant les JPRO à Sceaux 2026" width="1080" height="1434" loading="eager" fetchpriority="high" decoding="async"></div><p class="hero-caption">Participation à la journée porte ouverte de l'IUT de Sceaux de l'Université Paris-Saclay, 2026.</p></div>
   <div class="hero-copy"><h1>Théo MOUA, étudiant en <span class="h1-highlight">marketing digital</span></h1><p class="tag">${description}</p><p class="availability"><span class="availability-dot" aria-hidden="true"></span>Disponible – stage dès février 2027</p></div>
  </section>
  <section class="work home-projects anchor-section" id="projets"><h2>Projets</h2><div class="grid">
@@ -61,9 +61,9 @@ function home(){
        <feComposite in="outline-color" in2="soft-expanded" operator="in"/>
       </filter>
      </defs>
-     <image href="A%20propos%20de%20moi%20photo.png" width="612" height="408" filter="url(#home-about-outline)"/>
+     <image href="A%20propos%20de%20moi%20photo.webp" width="612" height="408" filter="url(#home-about-outline)"/>
     </svg>
-    ${img("A%20propos%20de%20moi%20photo.png","Portrait détouré de Théo MOUA")}
+    ${img("A%20propos%20de%20moi%20photo.webp","Portrait détouré de Théo MOUA")}
    </div>
    <div class="home-about-text">
     <h2 id="home-about-title">À propos de moi</h2>
@@ -73,10 +73,10 @@ function home(){
      <article class="home-about-detail"><h3>Mes projets</h3><p>Affiches, sites web et contenus pour différents formats. En dehors de mes projets, j’aime le sport et les affiches qui racontent une histoire.</p></article>
     </div>
    </div>
-   <div class="home-about-photos" aria-label="Emplacements pour ajouter des photos">
-    <div class="home-about-photo-placeholder" role="img" aria-label="Emplacement pour une photo à ajouter">Photo à ajouter</div>
-    <div class="home-about-photo-placeholder" role="img" aria-label="Emplacement pour une photo à ajouter">Photo à ajouter</div>
-    <div class="home-about-photo-placeholder" role="img" aria-label="Emplacement pour une photo à ajouter">Photo à ajouter</div>
+   <div class="home-about-photos" role="group" aria-label="Photos de Théo MOUA">
+    <div class="home-about-photo-frame"><img class="home-about-photo" src="Photo_moi%201.webp" alt="Théo MOUA en train de photographier avec un appareil photo" width="2106" height="2608" loading="lazy" decoding="async"></div>
+    <div class="home-about-photo-frame"><img class="home-about-photo" src="Photo_moi%202.webp" alt="Théo MOUA jouant au football sur un terrain extérieur" width="669" height="747" loading="lazy" decoding="async"></div>
+    <div class="home-about-photo-frame"><img class="home-about-photo" src="Photo_moi%203.webp" alt="Théo MOUA échangeant avec une étudiante lors d’une journée portes ouvertes à l’IUT de Sceaux" width="1216" height="1250" loading="lazy" decoding="async"></div>
    </div>
   </div>
  </section>
@@ -117,7 +117,7 @@ function home(){
         <article class="career-card">
          <div class="career-date"><time datetime="2026-04">Avril 2026</time><span>Engagement</span></div>
          <h3>Organisation d’une tombola</h3>
-         <img class="career-card-image" src="Reves_Tombola.webp" alt="Tombola solidaire organisée pour l’Association Rêves" loading="lazy">
+         <img class="career-card-image" src="Reves_Tombola.optimized.webp" alt="Tombola solidaire organisée pour l’Association Rêves" width="1080" height="814" loading="lazy" decoding="async">
          <p class="career-organization">Association Rêves</p>
          <ul>
           <li>Organisation d’une tombola solidaire</li>
@@ -128,7 +128,7 @@ function home(){
         <article class="career-card">
          <div class="career-date"><time datetime="2026-04">Avril – mai 2026</time><span>Communication</span></div>
          <h3>Stage en communication</h3>
-         <img class="career-card-image" src="era-team-communication.png" alt="Équipe communication d’ERA Immobilier avec l’inscription Team Communication" loading="lazy">
+         <img class="career-card-image" src="era-team-communication.webp" alt="Équipe communication d’ERA Immobilier avec l’inscription Team Communication" width="347" height="464" loading="lazy" decoding="async">
          <p class="career-organization">Projet Immo · ERA Immobilier · 8 semaines</p>
          <ul>
           <li>Réalisation de vidéos</li>
@@ -141,7 +141,6 @@ function home(){
      </div>
     </div>
    </div>
-   <p class="career-scroll-hint" aria-hidden="true">Faites défiler la page pour découvrir la suite <span>↓</span></p>
   </div>
  </section>
  <section class="home-skills anchor-section" id="competences" aria-labelledby="skills-title">
@@ -332,6 +331,14 @@ const webPalette=[
  {group:"Rose",name:"Rose +1",hex:"#FF93FD",rgb:"255, 147, 253"},
  {group:"Rose",name:"Rose +2",hex:"#FFD0FB",rgb:"255, 208, 251"}
 ];
+function caseflowVideo(){
+ return `<div class="web-video-frame web-video-frame-caseflow">
+  <video autoplay muted loop playsinline preload="auto" poster="Site%20web%20photo.webp" aria-label="Démonstration vidéo du site CaseFlow">
+   <source src="Site-Caseflow-video.webm" type="video/webm">
+   Votre navigateur ne prend pas en charge les vidéos WebM.
+  </video>
+ </div>`;
+}
 function webVideoPlaceholder(title){
  return `<div class="web-video-frame" role="img" aria-label="Aperçu du projet ${title}. Vidéo au format paysage 1920 par 1080 à intégrer.">
   ${img(photos["sites-web"],`Aperçu du projet ${title}`)}
@@ -343,7 +350,7 @@ function sitesWebPage(){
  return `<section class="page web-project-page">
   <a class="btn pill back" href="/index.html">Retour</a>
   <section class="web-case-hero" aria-labelledby="caseflow-title">
-   ${webVideoPlaceholder("CaseFlow")}
+   ${caseflowVideo()}
    <div class="web-project-copy">
     <p class="web-project-kicker">Projet web · UI/UX design</p>
     <h2 id="caseflow-title">CaseFlow</h2>

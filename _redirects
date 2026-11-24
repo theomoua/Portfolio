@@ -10,5 +10,6 @@
 /parcours /index.html 200
 /affiches /contenu-visuel 301
 /mentions-legales /mentions-legales.html 200
-/a-propos /a-propos.html 200
+/a-propos /index.html?section=a-propos 301
+/a-propos.html /index.html?section=a-propos 301
 /* /404.html 404

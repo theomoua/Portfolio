@@ -334,8 +334,8 @@ const webPalette=[
 function caseflowVideo(){
  return `<div class="web-video-frame web-video-frame-caseflow">
   <video autoplay muted loop playsinline preload="auto" poster="Site%20web%20photo.webp" aria-label="Démonstration vidéo du site CaseFlow">
-   <source src="Site-Caseflow-video.webm" type="video/webm">
-   Votre navigateur ne prend pas en charge les vidéos WebM.
+   <source src="Site-Caseflow-video.optimized.mp4" type="video/mp4">
+   Votre navigateur ne prend pas en charge la lecture vidéo.
   </video>
  </div>`;
 }
